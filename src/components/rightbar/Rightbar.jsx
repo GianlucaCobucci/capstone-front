@@ -2,7 +2,7 @@ import React from "react";
 import "./rightbar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Users } from "../../jsonData";
-//import Online from "./Online";
+import Online from "../online/Online"
 
 const Rightbar = ({ profile }) => {
   const HomeRightbar = () => {
@@ -17,9 +17,9 @@ const Rightbar = ({ profile }) => {
         </a>
         <h4 className="rightbarTitle my-4">Amici online</h4>
         <ul className="rightbarFriendList list-unstyled">
-          {/* {Users.map((user) => (
+          {Users.map((user) => (
             <Online key={user.id} user={user} />
-          ))} */}
+          ))}
         </ul>
       </>
     );
