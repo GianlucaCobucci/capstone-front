@@ -1,0 +1,45 @@
+.post {
+    margin: 30px 0;
+}
+
+.postProfileImg {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+}
+
+.postUsername {
+    font-size: 15px;
+    cursor: pointer;
+
+}
+
+.postDate {
+    font-size: 12px;
+}
+
+.postImg {
+    max-height: 500px;
+    object-fit: contain;
+}
+
+.likeIcon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+
+}
+
+.postLikeCounter {
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.postCommentText {
+    font-size: 15px;
+}
+
+.border-bottom-dashed {
+    border-bottom: 1px dashed gray;
+    cursor: pointer;
+}
