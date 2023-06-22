@@ -21,6 +21,9 @@ const Topbar = () => {
             </div>
             <div className="d-flex align-items-center justify-content-between text-white flex-grow-1">
                 <div className="d-flex mx-5">
+                    <div className="topbarLinks">
+                        <span className="ropbarLink">Timeline</span>
+                    </div>
 
                     <div className="position-relative me-4" style={{ cursor: 'pointer' }}>
                         <PersonIcon style={{ boxShadow: '2px 2px 2px rgba(0, 0, 0, 0.5)', borderRadius: "30%" }} />
