@@ -1,0 +1,80 @@
+.login {
+    width: 100vw;
+    height: 100vh;
+    background-color: #f0f2f5;
+    background-repeat: no-repeat;
+    background-image: url("../../assets/magichub-login.jpg");
+    background-size: cover;
+;}
+
+.loginWrapper {
+    width: 70%;
+    height: 70%;
+}
+
+.loginLeft, .loginRight {
+    flex: 1;
+}
+
+.loginLeft {
+    background-color: #ffffff65;
+    height: 260px;
+    border-radius: 30px;
+}
+
+.loginLogo {
+    font-size: 50px;
+    color: rgb(117, 0, 0);
+    margin-bottom: 10px;
+    padding-left: 10px;
+}
+
+.loginDesc {
+    font-size: 24px;
+    padding-left: 10px;
+}
+
+.loginBox{
+    height: 300px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 10px;
+}
+
+.loginInput{
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid gray;
+    font-size: 18px;
+    padding-left: 20px;
+}
+
+.loginInput:focus{
+    outline: none;
+}
+
+.loginButton{
+    height: 50px;
+    border-radius: 10px;
+    background-color: #1775ee;
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.loginForgot{
+    text-align: center;
+    color: #ffffff;
+}
+
+.loginRegisterButton{
+    width: 60%;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #42b72a;
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+}
