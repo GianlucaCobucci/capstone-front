@@ -2,7 +2,7 @@ import React from "react";
 import "./rightbar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Users } from "../../jsonData";
-import Online from "../online/Online"
+import Online from "../../components/online/Online";
 
 const Rightbar = ({ profile }) => {
   const HomeRightbar = () => {
@@ -12,7 +12,7 @@ const Rightbar = ({ profile }) => {
           <img
             src="https://mtgrocks.com/wp-content/uploads/2021/02/magicarenax.jpg"
             alt="advertisement"
-            className="rightbarAd w-100 mt-3 rounded"
+            className="rightbarAd w-100 mt-0 rounded"
           />
         </a>
         <h4 className="rightbarTitle my-4">Amici online</h4>
