@@ -2,6 +2,9 @@
     width: 100vw;
     height: 100vh;
     background-color: #f0f2f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-repeat: no-repeat;
     background-image: url("../../assets/magichub-login.jpg");
     background-size: cover;
@@ -10,20 +13,27 @@
 .loginWrapper {
     width: 70%;
     height: 70%;
+    display: flex;
 }
 
 .loginLeft, .loginRight {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .loginLeft {
     background-color: #ffffff65;
     height: 260px;
+    margin-top: auto;
+    margin-bottom: auto;
     border-radius: 30px;
 }
 
 .loginLogo {
     font-size: 50px;
+    font-weight: 800;
     color: rgb(117, 0, 0);
     margin-bottom: 10px;
     padding-left: 10px;
@@ -35,10 +45,13 @@
 }
 
 .loginBox{
-    height: 300px;
+    height: 400px;
     padding: 20px;
     background-color: rgba(255, 255, 255, 0);
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .loginInput{
@@ -56,6 +69,7 @@
 .loginButton{
     height: 50px;
     border-radius: 10px;
+    border: none;
     background-color: #1775ee;
     color: white;
     font-size: 20px;
@@ -70,8 +84,10 @@
 
 .loginRegisterButton{
     width: 60%;
+    align-self: center;
     height: 50px;
     border-radius: 10px;
+    border: none;
     background-color: #42b72a;
     color: white;
     font-size: 20px;
