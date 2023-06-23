@@ -3,6 +3,8 @@ import "./rightbar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Users } from "../../jsonData";
 import Online from "../../components/online/Online";
+import magicHubAmazon from '../../assets/magichub-amazon.jpg';
+
 
 const Rightbar = ({ profile }) => { //questa è rightbar che trovo se sono sulla pagina home
   const HomeRightbar = () => {
@@ -21,6 +23,13 @@ const Rightbar = ({ profile }) => { //questa è rightbar che trovo se sono sulla
             <Online key={user.id} user={user} />
           ))}
         </ul>
+        <a href="https://www.amazon.it/Magic-The-Gathering/s?k=Magic+The+Gathering" target="_blank" rel="noreferrer">
+          <img
+            src={magicHubAmazon}
+            alt="amazon"
+            className="rightbarAd w-100 mt-0 rounded"
+          />
+        </a>
       </>
     );
   };
