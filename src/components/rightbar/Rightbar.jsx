@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Users } from "../../jsonData";
 import Online from "../../components/online/Online";
 
-const Rightbar = ({ profile }) => {
+const Rightbar = ({ profile }) => { //questa è rightbar che trovo se sono sulla pagina home
   const HomeRightbar = () => {
     return (
       <>
@@ -25,7 +25,7 @@ const Rightbar = ({ profile }) => {
     );
   };
 
-  const ProfileRightbar = () => {
+  const ProfileRightbar = () => { //questa è rightbar che trovo se sono sulla pagina profile
     return (
       <>
         <h4 className="rightbarTitle">Informazioni utente </h4>
@@ -48,7 +48,7 @@ const Rightbar = ({ profile }) => {
             <img
               src="https://picsum.photos/50/50"
               alt=""
-              className="rightbarFollowingImg"
+              className="rightbarFollowingImg rounded-circle"
             />
             <span className="rightbarFollowingName">John Carter</span>
           </div>
@@ -59,7 +59,7 @@ const Rightbar = ({ profile }) => {
             <img
               src="https://picsum.photos/50/50"
               alt=""
-              className="rightbarFollowingImg"
+              className="rightbarFollowingImg rounded-circle"
             />
             <span className="rightbarFollowingName">John Carter</span>
           </div>
@@ -70,7 +70,7 @@ const Rightbar = ({ profile }) => {
             <img
               src="https://picsum.photos/50/50"
               alt=""
-              className="rightbarFollowingImg"
+              className="rightbarFollowingImg rounded-circle"
             />
             <span className="rightbarFollowingName">John Carter</span>
           </div>
@@ -81,7 +81,7 @@ const Rightbar = ({ profile }) => {
             <img
               src="https://picsum.photos/50/50"
               alt=""
-              className="rightbarFollowingImg"
+              className="rightbarFollowingImg rounded-circle"
             />
             <span className="rightbarFollowingName">John Carter</span>
           </div>
@@ -92,7 +92,7 @@ const Rightbar = ({ profile }) => {
             <img
               src="https://picsum.photos/50/50"
               alt=""
-              className="rightbarFollowingImg"
+              className="rightbarFollowingImg rounded-circle"
             />
             <span className="rightbarFollowingName">John Carter</span>
           </div>
@@ -103,7 +103,7 @@ const Rightbar = ({ profile }) => {
             <img
               src="https://picsum.photos/50/50"
               alt=""
-              className="rightbarFollowingImg"
+              className="rightbarFollowingImg rounded-circle"
             />
             <span className="rightbarFollowingName">John Carter</span>
           </div>
