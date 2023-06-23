@@ -7,10 +7,10 @@ const Friend = ({user}) => {
     <li className="sidebarFriend mb-3 ms-3">
       <img
         className="sidebarFriendImg rounded-circle object-fit-cover me-2 mb-0"
-        src="https://picsum.photos/50/50"
+        src={user?.profilePicture}
         alt="friend"
       />
-      <span className="sidebarFriendName mb-0">{user.username}</span>
+      <span className="sidebarFriendName mb-0">{user?.username}</span>
     </li>
   );
 };

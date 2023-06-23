@@ -16,7 +16,7 @@ export const Users = [
     },
     {
         id: 4,
-        profilePicture: "https://picsum.photos/50/50g",
+        profilePicture: "https://picsum.photos/50/50",
         username: "Giorgia Bianchi",
     },
     {

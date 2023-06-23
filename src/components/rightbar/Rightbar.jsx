@@ -111,6 +111,7 @@ const Rightbar = ({ profile }) => {
       </>
     );
   };
+
   return (
     <div className="rightbar" style={{ width: "35%" }}>
       <div className="rightbarWrapper mt-3">
@@ -121,4 +122,3 @@ const Rightbar = ({ profile }) => {
 };
 
 export default Rightbar;
-
