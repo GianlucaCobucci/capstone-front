@@ -4,15 +4,15 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import ChatIcon from '@mui/icons-material/Chat';
 import PersonIcon from '@mui/icons-material/Person';
 import 'bootstrap/dist/css/bootstrap.min.css';
-/* import {Link} from 'react-router-dom' */
+import {Link} from 'react-router-dom'
 
 const Topbar = () => {
     return (
         <div className="d-flex align-items-center position-sticky bg-danger" style={{ height: '50px', top: '0', width: '100%', zIndex:1}}>
             <div className="flex-grow-1 d-flex justify-content-start">
-                {/* <Link to="/" style={{textDecoration:"none"}}> */}
+                <Link to="/" style={{textDecoration:"none"}}>
                     <span className="text-white fw-bold" style={{ fontSize: '26px', marginLeft: '20px', cursor: 'pointer' }}>MagicHub</span>
-                {/* </Link> */} 
+                </Link> 
             </div>
             <div className="d-flex justify-content-center flex-grow-1">
                 <div className="input-group" style={{ width: '100%', height: '44px' }}>
