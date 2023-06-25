@@ -24,7 +24,7 @@ const Profile = () => {
             </div>
           </div>
           <div className="profileRightBottom">
-            <Feed />
+            <Feed/>
             <Rightbar profile/> {/* questa prop indica la rightbar nella homepage o nella profile page */}
           </div>
         </div>
