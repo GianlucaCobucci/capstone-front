@@ -11,7 +11,8 @@ const Feed = () => {
 
   useEffect(()=>{
     const fetchPosts = async() => {
-      const res = await axios.get("posts/timeline/648752d0db8b2b612e9029bb")
+      const res = await axios.get("/posts/timeline/648752d0db8b2b612e9029bb")
+      //console.log(res.data.userPosts)
       setPosts(res.data.userPosts)
     }
     fetchPosts()
