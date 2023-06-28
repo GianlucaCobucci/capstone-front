@@ -6,7 +6,7 @@ import Online from "../../components/online/Online";
 import magicHubAmazon from '../../assets/magichub-amazon.jpg';
 
 
-const Rightbar = ({ profile }) => { //questa è rightbar che trovo se sono sulla pagina home
+const Rightbar = ({ user }) => {  //è child di profile
   const HomeRightbar = () => {
     return (
       <>
@@ -41,12 +41,12 @@ const Rightbar = ({ profile }) => { //questa è rightbar che trovo se sono sulla
         <div className="rightbarInfo">
           <div className="rightbarInfoItem">
             <span className="rightbarInfoKey">Città:</span>
-            <span className="rightbarInfoValue">Roma</span>
+            <span className="rightbarInfoValue">{user.city}</span>
           </div>
 
           <div className="rightbarInfoItem">
             <span className="rightbarInfoKey">Mazzo preferito:</span>
-            <span className="rightbarInfoValue">Mono Red Burn</span>
+            <span className="rightbarInfoValue">{user.deck}</span>
           </div>
         </div>
 
@@ -124,7 +124,7 @@ const Rightbar = ({ profile }) => { //questa è rightbar che trovo se sono sulla
   return (
     <div className="rightbar" style={{ width: "35%" }}>
       <div className="rightbarWrapper mt-3">
-        {profile ? <ProfileRightbar /> : <HomeRightbar />}
+        {user ? <ProfileRightbar /> : <HomeRightbar />}
       </div>
     </div>
   );
