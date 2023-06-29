@@ -12,8 +12,10 @@ const Profile = () => {
   const [posts, setPosts] = useState([]);
 
   const { username } = useParams();
+  console.log(username);
 
   useEffect(() => {
+    
     const fetchUserData = async () => {
       try {
         const res = await axios.get(`/users?username=${username}`);

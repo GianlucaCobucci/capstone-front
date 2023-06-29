@@ -1,0 +1,35 @@
+@keyframes cardFlip {
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    50% {
+        transform: rotateY(180deg);
+    }
+
+    100% {
+        transform: rotateY(0deg);
+    }
+}
+
+.card-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform-style: preserve-3d;
+    animation: cardFlip 3s ease-in-out infinite;
+    width: 100px;
+    height: 150px;
+}
+
+.card {
+    position: absolute;
+    backface-visibility: hidden;
+    width: 100px;
+    height: 150px;
+}
+
+.card-back {
+    transform: rotateY(180deg);
+}
