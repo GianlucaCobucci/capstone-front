@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import Share from '../share/Share';
-import Post from '../post/Post';
-import './feed.css';
-import { nanoid } from 'nanoid';
-import axios from 'axios';
-import { useLocation } from 'react-router-dom';
-import Loader from '../loader/Loader';
+import React, { useState, useEffect } from "react";
+import Share from "../share/Share";
+import Post from "../post/Post";
+import "./feed.css";
+import { nanoid } from "nanoid";
+import axios from "axios";
+import { useLocation } from "react-router-dom";
+import Loader from "../loader/Loader";
 
 const Feed = ({ username }) => {
   const [posts, setPosts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true); 
+  const [isLoading, setIsLoading] = useState(true);
 
   const location = useLocation();
-  const extractUsername = location.pathname.split('/').at(-1);
+  const extractUsername = location.pathname.split("/").at(-1);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -20,9 +20,9 @@ const Feed = ({ username }) => {
 
       if (extractUsername) {
         endpoint = `/posts/profile/${extractUsername}`;
-        console.log(endpoint);
+        //console.log(endpoint);
       } else {
-        endpoint = '/posts';
+        endpoint = "/posts";
       }
 
       try {
@@ -31,7 +31,7 @@ const Feed = ({ username }) => {
       } catch (error) {
         console.log(error);
       } finally {
-        setIsLoading(false); 
+        setIsLoading(false);
       }
     };
 

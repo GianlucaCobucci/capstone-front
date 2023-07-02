@@ -9,7 +9,7 @@ import { AuthContext } from "../../context/AuthContext";
 
 const Topbar = () => {
   const { user } = useContext(AuthContext);
-  console.log(user);
+  //console.log(user.username)
 
   return (
     <div
@@ -39,10 +39,6 @@ const Topbar = () => {
       </div>
       <div className="d-flex align-items-center justify-content-between text-white flex-grow-1">
         <div className="d-flex mx-5">
-          <div className="topbarLinks">
-            <span className="ropbarLink">Timeline</span>
-          </div>
-
           <div className="position-relative me-4" style={{ cursor: "pointer" }}>
             <PersonIcon
               style={{
@@ -118,7 +114,7 @@ const Topbar = () => {
             </span>
           </div>
         </div>
-        <Link to={`/profile/${user?.user?.username || ""}`}>
+        <Link to={`/profile/${user?.username || ""}`}>
           <img
             src="https://picsum.photos/50/50"
             alt="profile"

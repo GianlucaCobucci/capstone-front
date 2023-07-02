@@ -12,7 +12,7 @@ const Profile = () => {
   const [posts, setPosts] = useState([]);
 
   const { username } = useParams();
-  console.log(username);
+  //console.log(username);
 
   useEffect(() => {
     
@@ -20,7 +20,7 @@ const Profile = () => {
       try {
         const res = await axios.get(`/users?username=${username}`);
         setUser(res.data.user);
-        console.log(res.data.user);
+        //console.log(res.data.user);
       } catch (error) {
         console.log(error);
       }
@@ -30,7 +30,7 @@ const Profile = () => {
       try {
         const res = await axios.get(`/posts/profile/${username}`);
         setPosts(res.data.posts);
-        console.log(res.data.posts);
+        //console.log(res.data.posts);
       } catch (error) {
         console.log(error);
       }

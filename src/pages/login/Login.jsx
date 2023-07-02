@@ -18,7 +18,7 @@ const Login = () => {
     );
   };
 
-  console.log(user);
+  //console.log(user);
   return (
     <div className="login d-flex align-items-center justify-content-center">
       <div className="loginWrapper d-flex">
