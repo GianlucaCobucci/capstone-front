@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./post.css";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
@@ -8,12 +8,14 @@ import avatar from "../../assets/noAvatar.jpeg";
 import cover from "../../assets/noCover.jpeg";
 import moment from "moment";
 import { Link } from "react-router-dom";
+import {AuthContext} from "../../context/AuthContext"
 
 const Post = ({ post }) => {
   //console.log(post)
   const [like, setLike] = useState(post?.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState({});
+  const {user:currentUser} = useContext(AuthContext)
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -24,10 +26,21 @@ const Post = ({ post }) => {
     fetchUser();
   }, [post.userId]);
 
-  const likeHandler = () => {
-    setLike(isLiked ? like - 1 : like + 1);
-    setIsLiked(!isLiked);
-  };
+  useEffect(()=>{
+    setIsLiked(post.likes.includes(currentUser._id))
+  }, [currentUser._id, post.likes]);
+
+  const likeHandler = async () => {
+    try {
+      const response = await axios.put(`/posts/${post._id}/like`, {userId:currentUser._id})
+      //console.log(response);
+      setLike(isLiked ? like - 1 : like + 1);
+      setIsLiked(!isLiked);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  
 
   return (
     <div className="post w-100 shadow rounded my-4">
