@@ -4,27 +4,48 @@ import LabelIcon from "@mui/icons-material/Label";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { AuthContext } from "../../context/AuthContext";
-import axios from 'axios'
+import axios from "axios";
 
 const Share = () => {
   const { user } = useContext(AuthContext);
   const description = useRef();
   const [file, setFile] = useState(null);
 
-  const submitHandler = async (event) =>{
+  const submitHandler = async (event) => {
     event.preventDefault();
-    
-    const newPost = {
-      userId: user._id,
-      description: description.current.value
-    }
 
-    try {
-      await axios.post("/posts", newPost)
-    } catch (error) {
-      console.log(error);
+    //console.log(user);
+
+    if (user && user._id) {
+      const newPost = {
+        userId: user._id,
+        description: description.current.value,
+      };
+
+      if (file) {
+        const data = new FormData();
+        const fileName = Date.now() + file.name;
+        data.append("file", file, fileName);
+        newPost.img = fileName;
+        try {
+          await axios.post("/upload", data, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      try {
+        await axios.post("/posts", newPost);
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      console.log("Utente o ID utente non trovati");
     }
-  }
+  };
 
   return (
     <div className="share w-100 shadow p-3 rounded">
@@ -88,7 +109,10 @@ const Share = () => {
               <span className="shareOptionText fs-7 fw-bold">Dove sei</span>
             </div>
           </div>
-          <button className="shareButton btn p-2 rounded bg-danger fw-bold me-4 ms-auto cursor-pointer text-white" type="submit">
+          <button
+            className="shareButton btn p-2 rounded bg-danger fw-bold me-4 ms-auto cursor-pointer text-white"
+            type="submit"
+          >
             Condividi
           </button>
         </form>
