@@ -8,23 +8,64 @@ import axios from "axios";
 
 const Share = () => {
   const { user } = useContext(AuthContext);
+  //console.log(user);
+
   const description = useRef();
   const [file, setFile] = useState(null);
+  const [formData, setFormData] = useState({});
+
+  const onChangeHandleFile = (e) => {
+    setFile(e.target.files[0]);
+  };
+
+  const uploadFile = async (file) => {
+    const fileData = new FormData();
+    fileData.append("img", file);
+    try {
+      const response = await fetch("http://localhost:8800/api/upload", {
+        method: "POST",
+        body: fileData,
+      });
+      return await response.json();
+    } catch (error) {
+      console.log("Upload non andato a buon fine");
+    }
+  };
 
   const submitHandler = async (event) => {
     event.preventDefault();
 
-    //console.log(user);
+    if (file) {
+      try {
+        const uploadedFile = await uploadFile(file);
+        //console.log(uploadedFile);
+        const postFormData = {
+          ...formData,
+          img: uploadedFile.img,
+          userId: user._id,
+        };
+        await axios.post("/posts", postFormData);
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      console.error("Per favore scegli un file");
+    }
+  };
+
+  /* const submitHandler = async (event) => {
+    event.preventDefault();
 
     if (user && user._id) {
       const newPost = {
         userId: user._id,
         description: description.current.value,
+
       };
 
       if (file) {
-        const data = new FormData();
-        const fileName = Date.now() + file.name;
+        const data = new FormData(); //con formData posso evitare multipart/form-data
+        const fileName = Date.now() + file.name.replace(/\s/g, '');//tolgo spazi vuoti
         data.append("file", file, fileName);
         newPost.img = fileName;
         try {
@@ -39,13 +80,14 @@ const Share = () => {
       }
       try {
         await axios.post("/posts", newPost);
+        //window.location.reload()
       } catch (error) {
         console.log(error);
       }
     } else {
       console.log("Utente o ID utente non trovati");
     }
-  };
+  }; */
 
   return (
     <div className="share w-100 shadow p-3 rounded">
@@ -56,19 +98,26 @@ const Share = () => {
             src="https://picsum.photos/50/50"
             alt="profile"
           />
-          <input
-            placeholder={`Scrivi qualcosa ${user?.username}`}
-            className="shareInput border-0 w-80"
-            style={{ outline: "none" }}
-            ref={description}
-          />
         </div>
 
         <hr className="shareHr my-4" />
         <form
           className="shareBottom d-flex align-items-center justify-content-start"
           onSubmit={submitHandler}
+          encType="multipart/form-data"
         >
+          <input
+            placeholder={`Scrivi qualcosa ${user?.username}`}
+            className="shareInput border-0 w-80"
+            style={{ outline: "none" }}
+            ref={description}
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                description: e.target.value,
+              })
+            }
+          />
           <label
             htmlFor="file"
             className="shareOptions d-flex ms-4"
@@ -82,7 +131,8 @@ const Share = () => {
                 type="file"
                 id="file"
                 accept=".png, .jpeg, .jpg"
-                onChange={(event) => setFile(event.target.files[0])}
+                onChange={onChangeHandleFile}
+                name="img"
               />
             </div>
           </label>

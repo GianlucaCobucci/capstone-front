@@ -8,14 +8,15 @@ import avatar from "../../assets/noAvatar.jpeg";
 import cover from "../../assets/noCover.jpeg";
 import moment from "moment";
 import { Link } from "react-router-dom";
-import {AuthContext} from "../../context/AuthContext"
+import { AuthContext } from "../../context/AuthContext";
 
 const Post = ({ post }) => {
   //console.log(post)
   const [like, setLike] = useState(post?.likes.length);
+  //console.log(post)
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState({});
-  const {user:currentUser} = useContext(AuthContext)
+  const { user: currentUser } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -26,21 +27,22 @@ const Post = ({ post }) => {
     fetchUser();
   }, [post.userId]);
 
-  useEffect(()=>{
-    setIsLiked(post.likes.includes(currentUser._id))
+  useEffect(() => {
+    setIsLiked(post.likes.includes(currentUser._id));
   }, [currentUser._id, post.likes]);
 
   const likeHandler = async () => {
     try {
-      const response = await axios.put(`/posts/${post._id}/like`, {userId:currentUser._id})
+      const response = await axios.put(`/posts/${post._id}/like`, {
+        userId: currentUser._id,
+      });
       //console.log(response);
       setLike(isLiked ? like - 1 : like + 1);
       setIsLiked(!isLiked);
     } catch (error) {
       console.log(error);
     }
-  }
-  
+  };
 
   return (
     <div className="post w-100 shadow rounded my-4">
@@ -70,9 +72,9 @@ const Post = ({ post }) => {
         </div>
         <div className="postCenter mt-4">
           <span className="postText">{post?.description}</span>
-          <img
+          <img 
             className="postImg w-100 my-3 rounded"
-            src={post?.img || cover} //se c'è immagine inserita da database mettila, altrimento metti jpeg preimpostato
+            src={post?.img ? post.img : cover}
             alt="post"
           />
         </div>
