@@ -22,11 +22,11 @@ const Share = () => {
     const fileData = new FormData();
     fileData.append("img", file);
     try {
-      const response = await fetch("http://localhost:8800/api/upload", {
-        method: "POST",
-        body: fileData,
-      });
-      return await response.json();
+      const response = await axios.post(
+        "http://localhost:8800/api/upload",
+        fileData
+      );
+      return response.data;
     } catch (error) {
       console.log("Upload non andato a buon fine");
     }
@@ -45,6 +45,7 @@ const Share = () => {
           userId: user._id,
         };
         await axios.post("/posts", postFormData);
+        window.location.reload();
       } catch (error) {
         console.log(error);
       }
@@ -107,7 +108,7 @@ const Share = () => {
           encType="multipart/form-data"
         >
           <input
-            placeholder={`Scrivi qualcosa ${user?.username}`}
+            placeholder={`Scrivi qualcosa...`}
             className="shareInput border-0 w-80"
             style={{ outline: "none" }}
             ref={description}

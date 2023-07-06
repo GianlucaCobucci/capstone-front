@@ -72,7 +72,7 @@ const Post = ({ post }) => {
         </div>
         <div className="postCenter mt-4">
           <span className="postText">{post?.description}</span>
-          <img 
+          <img
             className="postImg w-100 my-3 rounded"
             src={post?.img ? post.img : cover}
             alt="post"
