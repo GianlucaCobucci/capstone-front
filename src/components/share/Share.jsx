@@ -54,59 +54,17 @@ const Share = () => {
     }
   };
 
-  /* const submitHandler = async (event) => {
-    event.preventDefault();
-
-    if (user && user._id) {
-      const newPost = {
-        userId: user._id,
-        description: description.current.value,
-
-      };
-
-      if (file) {
-        const data = new FormData(); //con formData posso evitare multipart/form-data
-        const fileName = Date.now() + file.name.replace(/\s/g, '');//tolgo spazi vuoti
-        data.append("file", file, fileName);
-        newPost.img = fileName;
-        try {
-          await axios.post("/upload", data, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          });
-        } catch (error) {
-          console.log(error);
-        }
-      }
-      try {
-        await axios.post("/posts", newPost);
-        //window.location.reload()
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
-      console.log("Utente o ID utente non trovati");
-    }
-  }; */
-
   return (
     <div className="share w-100 shadow p-3 rounded">
       <div className="shareWrapper p-2">
         <div className="shareTop d-flex align-items-center">
+          {/* immagine profilo share field */}
           <img
             className="shareProfileImg rounded-circle object-fit-cover me-3"
             src="https://picsum.photos/50/50"
             alt="profile"
           />
-        </div>
-
-        <hr className="shareHr my-4" />
-        <form
-          className="shareBottom d-flex align-items-center justify-content-start"
-          onSubmit={submitHandler}
-          encType="multipart/form-data"
-        >
+          {/* input share field */}
           <input
             placeholder={`Scrivi qualcosa...`}
             className="shareInput border-0 w-80"
@@ -119,11 +77,23 @@ const Share = () => {
               })
             }
           />
+
+        </div>
+        {/* linea divisoria */}
+        <hr className="shareHr my-4" />
+        {/* form field: contiene 3 icone (media, tag, location) */}
+        <form
+          className="shareBottom d-flex align-items-center justify-content-start"
+          onSubmit={submitHandler}
+          encType="multipart/form-data"
+        >
+          {/* prima icona media con funzione caricamento immagini */}
           <label
             htmlFor="file"
             className="shareOptions d-flex ms-4"
             style={{ cursor: "pointer" }}
           >
+
             <div className="shareOption d-flex align-items-center me-3">
               <PermMediaIcon htmlColor="SlateGray" className="shareIcon me-1" />
               <span className="shareOptionText fs-7 fw-bold">Media</span>
@@ -136,8 +106,9 @@ const Share = () => {
                 name="img"
               />
             </div>
-          </label>
 
+          </label>
+          {/* seconda icona tag */}
           <div className="shareOptions d-flex ms-4">
             <div
               className="shareOption d-flex align-items-center me-3"
@@ -147,7 +118,7 @@ const Share = () => {
               <span className="shareOptionText fs-7 fw-bold">Tag</span>
             </div>
           </div>
-
+          {/* terza icona location */}
           <div className="shareOptions d-flex ms-4">
             <div
               className="shareOption d-flex align-items-center me-3 cursor-pointer"
@@ -160,6 +131,7 @@ const Share = () => {
               <span className="shareOptionText fs-7 fw-bold">Dove sei</span>
             </div>
           </div>
+          {/* bottone condividi */}
           <button
             className="shareButton btn p-2 rounded bg-danger fw-bold me-4 ms-auto cursor-pointer text-white"
             type="submit"

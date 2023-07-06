@@ -1,12 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./rightbar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Users } from "../../jsonData";
 import Online from "../../components/online/Online";
-import magicHubAmazon from '../../assets/magichub-amazon.jpg';
+import magicHubAmazon from "../../assets/magichub-amazon.jpg";
+import axios from "axios";
+//import cover from '../../assets/noCover.jpeg'
+import { Link } from "react-router-dom";
 
+const Rightbar = ({ user }) => {
+  //è child di profile
+  const [friends, setFriends] = useState([]);
 
-const Rightbar = ({ user }) => {  //è child di profile
+  useEffect(() => {
+    const getFriends = async () => {
+      try {
+        if (user && user._id) {
+          const friendList = await axios.get(`/users/friends/${user._id}`);
+          setFriends(friendList.data.friendList);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getFriends();
+  }, [user]);
+
   const HomeRightbar = () => {
     return (
       <>
@@ -23,7 +42,11 @@ const Rightbar = ({ user }) => {  //è child di profile
             <Online key={user.id} user={user} />
           ))}
         </ul>
-        <a href="https://www.amazon.it/Magic-The-Gathering/s?k=Magic+The+Gathering" target="_blank" rel="noreferrer">
+        <a
+          href="https://www.amazon.it/Magic-The-Gathering/s?k=Magic+The+Gathering"
+          target="_blank"
+          rel="noreferrer"
+        >
           <img
             src={magicHubAmazon}
             alt="amazon"
@@ -34,7 +57,8 @@ const Rightbar = ({ user }) => {  //è child di profile
     );
   };
 
-  const ProfileRightbar = () => { //questa è rightbar che trovo se sono sulla pagina profile
+  const ProfileRightbar = () => {
+    //questa è rightbar che trovo se sono sulla pagina profile
     return (
       <>
         <h4 className="rightbarTitle">Informazioni utente </h4>
@@ -53,69 +77,18 @@ const Rightbar = ({ user }) => {  //è child di profile
         <h4 className="rightbarTitle">Amici</h4>
 
         <div className="rightBarFollowings">
-          <div className="rightbarFollowing">
-            <img
-              src="https://picsum.photos/50/50"
-              alt=""
-              className="rightbarFollowingImg rounded-circle"
-            />
-            <span className="rightbarFollowingName">John Carter</span>
-          </div>
-        </div>
-
-        <div className="rightBarFollowings">
-          <div className="rightbarFollowing">
-            <img
-              src="https://picsum.photos/50/50"
-              alt=""
-              className="rightbarFollowingImg rounded-circle"
-            />
-            <span className="rightbarFollowingName">John Carter</span>
-          </div>
-        </div>
-
-        <div className="rightBarFollowings">
-          <div className="rightbarFollowing">
-            <img
-              src="https://picsum.photos/50/50"
-              alt=""
-              className="rightbarFollowingImg rounded-circle"
-            />
-            <span className="rightbarFollowingName">John Carter</span>
-          </div>
-        </div>
-
-        <div className="rightBarFollowings">
-          <div className="rightbarFollowing">
-            <img
-              src="https://picsum.photos/50/50"
-              alt=""
-              className="rightbarFollowingImg rounded-circle"
-            />
-            <span className="rightbarFollowingName">John Carter</span>
-          </div>
-        </div>
-
-        <div className="rightBarFollowings">
-          <div className="rightbarFollowing">
-            <img
-              src="https://picsum.photos/50/50"
-              alt=""
-              className="rightbarFollowingImg rounded-circle"
-            />
-            <span className="rightbarFollowingName">John Carter</span>
-          </div>
-        </div>
-
-        <div className="rightBarFollowings">
-          <div className="rightbarFollowing">
-            <img
-              src="https://picsum.photos/50/50"
-              alt=""
-              className="rightbarFollowingImg rounded-circle"
-            />
-            <span className="rightbarFollowingName">John Carter</span>
-          </div>
+          {friends.map((friend) => (
+            <Link to={`/profile/${friend.username}`} style={{textDecoration: "none", color: "black"}} key={friend._id}>
+              <div className="rightbarFollowing">
+                <img
+                  src="https://picsum.photos/50/50" //se c'è immagine in database sarebbe src={friend.profilePicture ? friend.profilePicture : cover }
+                  alt=""
+                  className="rightbarFollowingImg rounded-circle"
+                />
+                <span className="rightbarFollowingName">{friend.username}</span>
+              </div>
+            </Link>
+          ))}
         </div>
       </>
     );
