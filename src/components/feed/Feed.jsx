@@ -46,7 +46,7 @@ const Feed = ({ username }) => {
   return (
     <div className="feed">
       <div className="feedWrapper">
-        <Share />
+        {(!username || username === user.username) && <Share />}
         {isLoading ? (
           <Loader /> // Mostra il loader se isLoading è true
         ) : (

@@ -67,7 +67,6 @@ const Profile = () => {
           <div className="profileRightBottom">
             <Feed posts={posts} />
             <Rightbar user={user} />
-            {/* questa prop indica la rightbar nella homepage o nella profile page */}
           </div>
         </div>
       </div>
