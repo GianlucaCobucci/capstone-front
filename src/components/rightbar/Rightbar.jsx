@@ -7,10 +7,20 @@ import magicHubAmazon from "../../assets/magichub-amazon.jpg";
 import axios from "axios";
 //import cover from '../../assets/noCover.jpeg'
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 
 const Rightbar = ({ user }) => {
   //è child di profile
   const [friends, setFriends] = useState([]);
+  const [followed, setFollowed] = useState([]);
+  const { user: currentUser, dispatch } = useContext(AuthContext);
+
+  useEffect(() => {
+    setFollowed(currentUser.followings?.includes(user?.id));
+  }, [currentUser, user?.id]);
 
   useEffect(() => {
     const getFriends = async () => {
@@ -25,6 +35,31 @@ const Rightbar = ({ user }) => {
     };
     getFriends();
   }, [user]);
+
+  const handleClick = async () => {
+    try {
+      if (followed) {
+        const response = await axios.put(`/users/${user?._id}/unfollow`, {
+          userId: currentUser._id,
+        });
+        if (response.status === 200) {
+          dispatch({ type: "UNFOLLOW", payload: user._id });
+          setFollowed(false);
+        }
+      } else {
+        const response = await axios.put(`/users/${user?._id}/follow`, {
+          userId: currentUser._id,
+        });
+        if (response.status === 200) {
+          dispatch({ type: "FOLLOW", payload: user._id });
+          setFollowed(true);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 
   const HomeRightbar = () => {
     return (
@@ -61,6 +96,12 @@ const Rightbar = ({ user }) => {
     //questa è rightbar che trovo se sono sulla pagina profile
     return (
       <>
+        {user.username !== currentUser.username && (
+          <button className="rightbarFollowButton" onClick={handleClick}>
+            {followed ? "Smetti di seguire" : "Segui"}
+            {followed ? <RemoveCircleIcon /> : <AddCircleIcon />}
+          </button>
+        )}
         <h4 className="rightbarTitle">Informazioni utente </h4>
         <div className="rightbarInfo">
           <div className="rightbarInfoItem">
@@ -78,7 +119,11 @@ const Rightbar = ({ user }) => {
 
         <div className="rightBarFollowings">
           {friends.map((friend) => (
-            <Link to={`/profile/${friend.username}`} style={{textDecoration: "none", color: "black"}} key={friend._id}>
+            <Link
+              to={`/profile/${friend.username}`}
+              style={{ textDecoration: "none", color: "black" }}
+              key={friend._id}
+            >
               <div className="rightbarFollowing">
                 <img
                   src="https://picsum.photos/50/50" //se c'è immagine in database sarebbe src={friend.profilePicture ? friend.profilePicture : cover }
