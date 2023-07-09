@@ -5,6 +5,8 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
+import CancelIcon from '@mui/icons-material/Cancel';
+import "./share.css";
 
 const Share = () => {
   const { user } = useContext(AuthContext);
@@ -81,6 +83,12 @@ const Share = () => {
         </div>
         {/* linea divisoria */}
         <hr className="shareHr my-4" />
+        {file &&(
+          <div className="shareImgContainer">
+            <img className="shareImg" src={URL.createObjectURL(file)} alt="" />
+            <CancelIcon className="shareCancelImg" onClick={() => setFile(null)}/>
+          </div>
+        )}
         {/* form field: contiene 3 icone (media, tag, location) */}
         <form
           className="shareBottom d-flex align-items-center justify-content-start"
