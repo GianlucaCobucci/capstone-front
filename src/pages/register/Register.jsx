@@ -22,6 +22,7 @@ const Register = () => {
       };
       try {
         await axios.post("/auth/register", user);
+        localStorage.setItem('user', JSON.stringify(user)); // salva user nel localStorage
         navigate("/login")
       } catch (error) {
         console.log(error);

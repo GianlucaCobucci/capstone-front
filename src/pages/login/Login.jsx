@@ -15,8 +15,16 @@ const Login = () => {
     loginCall(
       { email: email.current.value, password: password.current.value },
       dispatch
-    );
+    )
+    .then(res => {
+      // salva l'utente nel localStorage
+      localStorage.setItem("user", JSON.stringify(res.user));
+    })
+    .catch(err => {
+      console.log(err);
+    });
   };
+  
 
   //console.log(user);
   return (
