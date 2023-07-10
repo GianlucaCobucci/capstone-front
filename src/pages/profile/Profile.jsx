@@ -50,18 +50,18 @@ const Profile = () => {
             <div className="profileCover">
               <img
                 className="profileCoverImg"
-                src={user.coverPicture || "https://picsum.photos/200/200"}
+                src={user?.coverPicture || "https://picsum.photos/200/200"}
                 alt="profile cover"
               />
               <img
                 className="profileUserImg"
-                src={user.profilePicture || "https://picsum.photos/200/200"}
+                src={user?.profilePicture || "https://picsum.photos/200/200"}
                 alt="profile user"
               />
             </div>
             <div className="profileInfo">
-              <h4 className="profileInfoName">{user.username}</h4>
-              <span className="profileInfoDesc">{user.desc}</span>
+              <h4 className="profileInfoName">{user?.username}</h4>
+              <span className="profileInfoDesc">{user?.desc}</span>
             </div>
           </div>
           <div className="profileRightBottom">

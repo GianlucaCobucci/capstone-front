@@ -49,7 +49,7 @@ const Post = ({ post }) => {
       <div className="postWrapper p-3">
         <div className="postTop d-flex align-items-center justify-content-between">
           <div className="postTopLeft d-flex align-items-center">
-            <Link to={`/profile/${user.username}`}>
+            <Link to={`/profile/${user?.username}`}>
               <img
                 className="postProfileImg rounded-circle object-fit-cover"
                 src={user?.profilePicture || avatar} //se c'è immagine inserita da database mettila, altrimento metti jpeg preimpostato
