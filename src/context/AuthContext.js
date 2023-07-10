@@ -6,15 +6,16 @@ import AuthReducer from "./AuthReducer"
 
 const INITIAL_STATE = { //stato iniziale
     user: {
-        "_id": "648752d0db8b2b612e9029bb",
-        "username": "paolo",
-        "email": "paolo@gmail.com",
+        "_id": "64aaff40ae6a9a00e1a9f8ab",
+        "username": "Marco",
+        "email": "marco@gmail.com",
         "profilePicture": "",
         "coverPicture": "",
         "followers": [],
         "followings": [],
         "isAdmin": false,
     },
+    //user: null,
     isFetching: false,
     error: false
 }
