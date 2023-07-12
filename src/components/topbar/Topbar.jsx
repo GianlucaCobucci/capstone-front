@@ -9,7 +9,7 @@ import { AuthContext } from "../../context/AuthContext";
 
 const Topbar = () => {
   const { user } = useContext(AuthContext);
-  //console.log(user.username)
+  //console.log(user?.user?.username)
 
   return (
     <div
@@ -114,7 +114,7 @@ const Topbar = () => {
             </span>
           </div>
         </div>
-        <Link to={`/profile/${user?.username || ""}`}>
+        <Link to={`/profile/${user?.user?.username || ""}`}>
           <img
             src="https://picsum.photos/50/50"
             alt="profile"

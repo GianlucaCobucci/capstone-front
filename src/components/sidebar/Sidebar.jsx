@@ -8,6 +8,7 @@ import EventIcon from "@mui/icons-material/Event";
 import "bootstrap/dist/css/bootstrap.css";
 import { Users } from "../../jsonData";
 import Friend from "../friend/Friend";
+import StorageIcon from "@mui/icons-material/Storage";
 
 const Sidebar = () => {
   return (
@@ -65,6 +66,19 @@ const Sidebar = () => {
               href="https://www.facebook.com/search/events?q=magic%3A%20the%20gathering"
             >
               <span className="sidebarListItem">Eventi</span>
+            </a>
+          </li>
+
+          <li className="sidebarListItem d-flex align-items-center mb-2">
+            <StorageIcon
+              className="sidebarIcon me-3"
+              style={{ cursor: "pointer" }}
+            />
+            <a
+              style={{ textDecoration: "none", color: "black" }}
+              href="/search"
+            >
+              <span className="sidebarListItem">Database carte</span>
             </a>
           </li>
         </ul>
