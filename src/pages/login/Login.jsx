@@ -8,22 +8,27 @@ const Login = () => {
   const email = useRef();
   const password = useRef();
   // eslint-disable-next-line
-  const { user, isFetching, error, dispatch } = useContext(AuthContext);
+  const { isFetching, dispatch } = useContext(AuthContext);
 
-  const handleClick = (event) => {
+  const handleClick = async (event) => {
     event.preventDefault();
-    loginCall(
-      { email: email.current.value, password: password.current.value },
-      dispatch
-    )
-    .then(res => {
-      // salva l'utente nel localStorage
+    
+    try {
+      const res = await loginCall(
+        { 
+          email: email.current.value, 
+          password: password.current.value 
+        },
+        dispatch
+      );
+      
+      // Salva l'utente nel localStorage
       localStorage.setItem("user", JSON.stringify(res.user));
-    })
-    .catch(err => {
+    } catch (err) {
       console.log(err);
-    });
+    }
   };
+  
   
 
   //console.log(user);
