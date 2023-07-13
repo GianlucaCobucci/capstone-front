@@ -75,7 +75,7 @@ const Register = () => {
             <button className="loginButton border-0" type="submit">
               Sign Up
             </button>
-            <button className="loginRegisterButton align-self-center border-0">
+            <button className="loginRegisterButton align-self-center border-0" onClick={() => navigate("/login")}>
               Log In
             </button>
           </form>

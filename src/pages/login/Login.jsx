@@ -17,20 +17,19 @@ const Login = () => {
       const res = await loginCall(
         { 
           email: email.current.value, 
-          password: password.current.value 
+          password: password.current.value,
         },
         dispatch
       );
+      console.log(res)
       
       // Salva l'utente nel localStorage
       localStorage.setItem("user", JSON.stringify(res.user));
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log(error);
     }
   };
   
-  
-
   //console.log(user);
   return (
     <div className="login d-flex align-items-center justify-content-center">
