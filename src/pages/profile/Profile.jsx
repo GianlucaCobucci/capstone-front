@@ -10,7 +10,7 @@ import { useParams } from "react-router";
 const Profile = () => {
   const [user, setUser] = useState({});
   const [posts, setPosts] = useState([]);
-
+  //console.log(posts)
   const { username } = useParams();
   //console.log(username);
 
@@ -65,7 +65,7 @@ const Profile = () => {
             </div>
           </div>
           <div className="profileRightBottom">
-            <Feed posts={posts} />
+            <Feed posts={posts} user={user}/>
             <Rightbar user={user} />
           </div>
         </div>
