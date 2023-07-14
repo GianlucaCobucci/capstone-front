@@ -2,11 +2,6 @@
     height: calc(100vh - 70px);
 }
 
-.chatMenuInput {
-    padding:10px 0;
-    width: 90%;
-}
-
 .chatBoxBottom {
     margin-top: 5px;
 }
@@ -26,14 +21,4 @@
 .chatBoxTop {
     height: 100%;
     padding-right: 10px;
-}
-
-.chatBoxWrapper {
-    height: 100%;
-}
-
-.chatMenuWrapper,
-.chatBoxWrapper,
-.chatOnlineWrapper {
-    height: 100%;
 }
