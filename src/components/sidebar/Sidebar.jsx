@@ -9,6 +9,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Users } from "../../jsonData";
 import Friend from "../friend/Friend";
 import StorageIcon from "@mui/icons-material/Storage";
+import ChatIcon from '@mui/icons-material/Chat';
 
 const Sidebar = () => {
   return (
@@ -49,11 +50,16 @@ const Sidebar = () => {
           </li>
 
           <li className="sidebarListItem d-flex align-items-center mb-2">
-            <QuestionMarkIcon
+            <ChatIcon
               className="sidebarIcon me-3"
               style={{ cursor: "pointer" }}
             />
-            <span className="sidebarListItem">Domande</span>
+            <a
+              style={{ textDecoration: "none", color: "black" }}
+              href="/messenger"
+            >
+              <span className="sidebarListItem">Chat</span>
+            </a>
           </li>
 
           <li className="sidebarListItem d-flex align-items-center mb-2">

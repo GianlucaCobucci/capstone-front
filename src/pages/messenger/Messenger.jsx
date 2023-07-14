@@ -11,17 +11,11 @@ import { io } from "socket.io-client";
 
 const Messenger = () => {
   const [conversations, setConversations] = useState([]);
-  //console.log(conversations);
   const [currentChat, setCurrentChat] = useState(null);
-  //console.log(currentChat)
   const [messages, setMessages] = useState([]);
-  //console.log(messages)
   const [newMessage, setNewMessage] = useState("");
-  //console.log(newMessage)
   const [arrivalMessage, setArrivalMessage] = useState(null);
-  //console.log(arrivalMessage)
   const [onlineUsers, setOnlineUsers] = useState([]);
-  //console.log(arrivalMessage)
   const { user } = useContext(AuthContext);
   //console.log(user)
   const scrollRef = useRef();
