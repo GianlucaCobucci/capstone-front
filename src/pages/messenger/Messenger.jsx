@@ -17,7 +17,6 @@ const Messenger = () => {
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
   const { user } = useContext(AuthContext);
-  //console.log(user)
   const scrollRef = useRef();
   const socket = useRef();
 
@@ -33,15 +32,20 @@ const Messenger = () => {
   }, []);
 
   useEffect(() => {
-    arrivalMessage &&
-      currentChat?.members.includes(arrivalMessage.sender) &&
+    if (
+      arrivalMessage &&
+      currentChat?.members.includes(arrivalMessage.sender)
+    ) {
       setMessages((prev) => [...prev, arrivalMessage]);
+    }
   }, [arrivalMessage, currentChat]);
 
   useEffect(() => {
     socket.current.emit("addUser", user._id);
     socket.current.on("getUsers", (users) => {
-      setOnlineUsers(user.followings.filter(f => users.some(u=>u.userId === f)));
+      setOnlineUsers(
+        user.followings.filter((f) => users.some((u) => u.userId === f))
+      );
     });
   }, [user]);
 
@@ -49,7 +53,6 @@ const Messenger = () => {
     const getConversations = async () => {
       try {
         const res = await axios.get(`/conversations/${user._id}`);
-        //console.log(res);
         setConversations(res.data.conversation);
       } catch (error) {
         console.log(error);
@@ -63,14 +66,12 @@ const Messenger = () => {
       try {
         const res = await axios.get(`/messages/${currentChat?._id}`);
         setMessages(res.data.messages);
-        //console.log(res);
       } catch (error) {
         console.log(error);
       }
     };
     getMessages();
   }, [currentChat]);
-  //console.log(messages)
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -93,14 +94,13 @@ const Messenger = () => {
       const res = await axios.post(`/messages`, message);
       setMessages([...messages, res.data.savedMessage]);
       setNewMessage("");
-      //console.log(res)
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behavior: "smooth" }); //scrolla automaticamente alla fine fella conversazione
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   return (
