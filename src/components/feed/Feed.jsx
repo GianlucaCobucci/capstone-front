@@ -27,16 +27,18 @@ const Feed = ({ username }) => {
 
       try {
         const res = await axios.get(endpoint);
+        const postsData = res.data.userPosts || res.data.posts;
         setPosts(
-          res.data.posts.sort((post1, post2)=>{
-            return new Date(post2.createdAt) - new Date (post1.createdAt)//mette prima il post creato per ultimo
-          }));
-        //console.log(res.data.posts)
+          postsData.sort((post1, post2)=>{
+            return new Date(post2.createdAt) - new Date (post1.createdAt) //mette prima il post creato per ultimo
+          })
+        );
       } catch (error) {
         console.log(error);
       } finally {
         setIsLoading(false);
       }
+      
     };
 
     fetchPosts();
