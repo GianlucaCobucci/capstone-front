@@ -5,7 +5,6 @@ import { Users } from "../../jsonData";
 import Online from "../../components/online/Online";
 import magicHubAmazon from "../../assets/magichub-amazon.jpg";
 import axios from "axios";
-//import cover from '../../assets/noCover.jpeg'
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
@@ -38,10 +37,12 @@ const Rightbar = ({ user }) => {
 
   const handleClick = async () => {
     try {
+      //console.log("Current User ID:", currentUser._id); 
       if (followed) {
         const response = await axios.put(`/users/${user?._id}/unfollow`, {
           userId: currentUser._id,
         });
+        //console.log("Unfollow Response:", response); 
         if (response.status === 200) {
           dispatch({ type: "UNFOLLOW", payload: user._id });
           setFollowed(false);
@@ -50,6 +51,7 @@ const Rightbar = ({ user }) => {
         const response = await axios.put(`/users/${user?._id}/follow`, {
           userId: currentUser._id,
         });
+        //console.log("Follow Response:", response); 
         if (response.status === 200) {
           dispatch({ type: "FOLLOW", payload: user._id });
           setFollowed(true);
@@ -59,6 +61,8 @@ const Rightbar = ({ user }) => {
       console.log(error);
     }
   };
+  
+  
 
 
   const HomeRightbar = () => {
