@@ -1,20 +1,27 @@
 import "./topbar.css";
 import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import ChatIcon from "@mui/icons-material/Chat";
 import PersonIcon from "@mui/icons-material/Person";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from "react-router-dom";
+import { Dropdown } from 'react-bootstrap';
 import { AuthContext } from "../../context/AuthContext";
 
 const Topbar = () => {
-  const { user } = useContext(AuthContext);
-  //console.log(user?.user?.username)
+  const { user, dispatch } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+    localStorage.removeItem("user");
+    navigate('/register');
+  };
 
   return (
     <div
       className="d-flex align-items-center position-sticky bg-danger"
-      style={{ height: "50px", top: "0", width: "100%", zIndex: 1 }}
+      style={{ height: "52px", top: "0", width: "100%", zIndex: 1 }}
     >
       <div className="flex-grow-1 d-flex justify-content-start">
         <Link to="/" style={{ textDecoration: "none" }}>
@@ -114,19 +121,25 @@ const Topbar = () => {
             </span>
           </div>
         </div>
-        <Link to={`/profile/${user?.user?.username || ""}`}>
-          <img
-            src="https://picsum.photos/50/50"
-            alt="profile"
-            className="rounded-circle profile-pic"
-            style={{
-              width: "40px",
-              height: "40px",
-              objectFit: "cover",
-              cursor: "pointer",
-            }}
-          />
-        </Link>
+        <Dropdown>
+          <Dropdown.Toggle className="bg-danger dropdown-toggle" >
+            <img
+              src="https://picsum.photos/50/50"
+              alt="profile"
+              className="rounded-circle profile-pic"
+              style={{
+                width: "40px",
+                height: "40px",
+                objectFit: "cover",
+                cursor: "pointer",
+              }}
+            />
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu className="dropdown-menu">
+            <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
       </div>
     </div>
   );

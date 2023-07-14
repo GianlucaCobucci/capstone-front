@@ -33,3 +33,23 @@
 .topbarLinks {
     margin-right: 3em;
 }
+
+.dropdown {
+    background-color: #DC3545;
+}
+
+.dropdown-toggle {
+    border: none !important;
+    box-shadow: none !important;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.dropdown-menu {
+    margin-top: 0;
+}
